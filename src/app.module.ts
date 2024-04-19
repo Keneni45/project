@@ -3,10 +3,10 @@ import { ConfigModule } from '@nestjs/config';
 import * as Joi from '@hapi/joi';
 import { AdminModule } from './admin/admin.module';
 import { DatabaseModule } from './database.module';
+import { ProductModule } from './product/product.module';
 
 @Module({
   imports: [
-    AdminModule,
     DatabaseModule,
     ConfigModule.forRoot({
       validationSchema: Joi.object({
@@ -15,8 +15,12 @@ import { DatabaseModule } from './database.module';
         port: Joi.number().required(),
         password: Joi.string().required(),
         database: Joi.string().required(),
+        entities: [__dirname + '/../**/*.entity.ts'],
+        synchronize: true,
       }),
     }),
+    AdminModule,
+    ProductModule,
   ],
 })
 export class AppModule {}

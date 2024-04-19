@@ -1,11 +1,12 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { AdminEntity } from './admin.entity';
+
 import { FindOneOptions, Repository } from 'typeorm';
 import { CreateAdminDto } from './dto/createAdmin.dto';
 import { JWT_SECRET } from 'config';
 import { sign } from 'jsonwebtoken';
 import { AdminResponseInterface } from './types/adminResponse.interface';
+import { AdminEntity } from './admin.entity';
 
 @Injectable()
 export class AdminService {
@@ -30,16 +31,16 @@ export class AdminService {
     Object.assign(newAdmin, createAdminDto);
     return this.adminRepository.save(newAdmin);
   }
-  async findById(adminId: number) {
+  async findById(id: number) {
     const options: FindOneOptions<AdminEntity> = {
-      where: { adminId },
+      where: { id },
     };
     return this.adminRepository.findOne(options);
   }
   generateJWT(admin: AdminEntity): string {
     const token = sign(
       {
-        adminId: admin.adminId,
+        id: admin.id,
         email: admin.email,
         password: admin.password,
       },

@@ -15,7 +15,7 @@ export class AdminController {
 
   //admin register request
   @Post('admin')
-  @UsePipes(new ValidationPipe())
+  // @UsePipes(new ValidationPipe())
   async createAdmin(
     @Body('admin') createAdminDto: CreateAdminDto,
   ): Promise<AdminResponseInterface> {
