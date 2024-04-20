@@ -7,7 +7,9 @@ import { ProductModule } from './product/product.module';
 
 @Module({
   imports: [
-    DatabaseModule,
+    AdminModule,
+    ProductModule,
+
     ConfigModule.forRoot({
       validationSchema: Joi.object({
         username: Joi.string().required(),
@@ -15,12 +17,9 @@ import { ProductModule } from './product/product.module';
         port: Joi.number().required(),
         password: Joi.string().required(),
         database: Joi.string().required(),
-        entities: [__dirname + '/../**/*.entity.ts'],
-        synchronize: true,
       }),
     }),
-    AdminModule,
-    ProductModule,
+    DatabaseModule,
   ],
 })
 export class AppModule {}

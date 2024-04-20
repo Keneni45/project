@@ -6,7 +6,7 @@ import { CreateAdminDto } from './dto/createAdmin.dto';
 import { JWT_SECRET } from 'config';
 import { sign } from 'jsonwebtoken';
 import { AdminResponseInterface } from './types/adminResponse.interface';
-import { AdminEntity } from './admin.entity';
+import { AdminEntity } from './entity/admin.entity';
 
 @Injectable()
 export class AdminService {
