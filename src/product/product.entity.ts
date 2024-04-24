@@ -10,6 +10,8 @@ class PostEntity {
 
   @Column()
   public content: string;
+  @Column()
+  public image: string;
 }
 
 export default PostEntity;
